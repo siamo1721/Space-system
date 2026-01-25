@@ -27,4 +27,11 @@ public class SatelliteConstellation {
         this.constellationName = constellationName;
         this.satelliteList = new ArrayList<>();
     }
+    @Override
+    public String toString() {
+        return "SatelliteConstellation{" +
+                "constellationName='" + constellationName + '\'' +
+                ", satellites=" + satelliteList +
+                '}';
+    }
 }
