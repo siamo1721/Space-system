@@ -13,29 +13,29 @@ public class ImagingSatellite extends Satellite {
     }
 
 
-    public ImagingSatellite(double resolution, int photosTaken, String name, double batteryLevel, boolean isActive){
+    public ImagingSatellite(String name,double batteryLevel, double resolution) {
+        super(name, batteryLevel);
         this.resolution = resolution;
-        this.photosTaken = photosTaken;
+        this.photosTaken = 0;
         this.name = name;
-        this.batteryLevel = batteryLevel;
-        this.isActive = isActive;
     }
+
     @Override
     protected void performMission() {
-        if (this.isActive) {
-            consumeBattery(0.08);
+        if (isActive()) {
+            energy.consume(0.08);
         }
-        if (this.isActive) {
+        if (isActive()) {
             takePhoto();
-            System.out.println( this.name + ":" +" Съемка территории с разрешением "+ this.resolution +" м/пиксель");
-            System.out.println(this.name + ": " + "Снимок #" +this.getPhotosTaken()+ " сделан!");
-        }else{
-            System.out.println("\uD83D\uDED1 "+this.name + ":"+" Не может выполнить съемку - не активен");
+            System.out.println(this.name + ":" + " Съемка территории с разрешением " + this.resolution + " м/пиксель");
+            System.out.println(this.name + ": " + "Снимок #" + this.getPhotosTaken() + " сделан!");
+        } else {
+            System.out.println("\uD83D\uDED1 " + this.name + ":" + " Не может выполнить съемку - не активен");
         }
     }
 
     private void takePhoto() {
-        if (this.isActive) {
+        if (isActive()) {
             this.photosTaken++;
         }
     }
@@ -43,8 +43,8 @@ public class ImagingSatellite extends Satellite {
     @Override
     public String toString() {
         return "ImagingSatellite{name='" + name +
-                "', battery=" + batteryLevel +
-                ", active=" + isActive +
+                "', battery=" + energy.getBatteryLevel() +
+                ", active=" + state.isActive() +
                 ", resolution=" + resolution +
                 ", photosTaken=" + photosTaken +
                 "}";
