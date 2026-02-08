@@ -1,18 +1,16 @@
 package org.example.service;
 
+import lombok.AllArgsConstructor;
 import org.example.Satellite;
 import org.example.SatelliteConstellation;
 import org.example.repository.ConstellationRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class SpaceOperationCenterService {
 
     private final ConstellationRepository repository;
-
-    public SpaceOperationCenterService(ConstellationRepository repository) {
-        this.repository = repository;
-    }
 
     public void createAndSaveConstellation(String name) {
         SatelliteConstellation constellation = new SatelliteConstellation(name);

@@ -1,12 +1,13 @@
 package org.example;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public class CommunicationSatellite extends Satellite {
 
     private double bandWidth;
-
-    public double getBandWidth() {
-        return this.bandWidth;
-    }
 
     private void sendData(double amount) {
         System.out.println(this.name + ": Передача данных со скоростью " + amount + " Мбит/с");
@@ -26,15 +27,5 @@ public class CommunicationSatellite extends Satellite {
                 sendData(this.bandWidth);
             }
         }
-    }
-
-    @Override
-    public String toString() {
-        return "CommunicationSatellite{" +
-                "name='" + name + '\'' +
-                ", batteryLevel=" + energy.getBatteryLevel() +
-                ", isActive=" + state.isActive() +
-                ", bandWidth=" + bandWidth +
-                '}';
     }
 }

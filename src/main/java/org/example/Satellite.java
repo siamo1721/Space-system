@@ -1,5 +1,8 @@
 package org.example;
 
+import lombok.Data;
+
+@Data
 public abstract class Satellite {
     protected String name;
     protected SatelliteState state;
@@ -11,15 +14,6 @@ public abstract class Satellite {
         this.state = new SatelliteState();
         this.energy = new EnergySystem(batteryLevel);
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public SatelliteState getState() {
-        return state;
-    }
-
 
     public boolean activate() {
         if (energy.hasEnoughEnergy(0.2)) {
@@ -54,12 +48,4 @@ public abstract class Satellite {
     }
     protected abstract void performMission();
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() +
-                "{name='" + name + '\'' +
-                ", state=" + state +
-                ", energy=" + energy.getBatteryLevel() +
-                '}';
-    }
 }
