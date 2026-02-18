@@ -1,52 +1,58 @@
 package org.example;
 
+import org.example.service.SpaceOperationCenterService;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
+@SpringBootApplication
 public class Main {
-    static void main() {
+
+    public static void main(String[] args) {
+
+        ConfigurableApplicationContext context =
+                SpringApplication.run(Main.class, args);
+
+        SpaceOperationCenterService service =
+                context.getBean(SpaceOperationCenterService.class);
+
         System.out.println("ЗАПУСК СИСТЕМЫ УПРАВЛЕНИЯ СПУТНИКОВОЙ ГРУППИРОВКОЙ");
         System.out.println("============================================================");
 
-        System.out.println("СОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:");
+        System.out.println("\nСОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:");
         System.out.println("---------------------------------------------");
 
-        CommunicationSatellite s1 = new CommunicationSatellite("Cвязь-1", 0.85, true, 500.0);
-        CommunicationSatellite s2 = new CommunicationSatellite("Cвязь-2", 0.75, false, 1000.0);
+        Satellite s1 = new CommunicationSatellite("Связь-1", 500, 0.85);
+        Satellite s2 = new CommunicationSatellite("Связь-2", 1000, 0.75);
+        Satellite d1 = new ImagingSatellite("ДЗЗ-1", 2.5, 0.92);
+        Satellite d2 = new ImagingSatellite("ДЗЗ-2", 1.0, 0.45);
+        Satellite d3 = new ImagingSatellite("ДЗЗ-3", 0.5, 0.15);
 
-        ImagingSatellite d1 = new ImagingSatellite(2.5, 0, "ДЗЗ-1", 0.92, false);
-        ImagingSatellite d2 = new ImagingSatellite(1.0, 0, "ДЗЗ-2", 0.45, false);
-        ImagingSatellite d3 = new ImagingSatellite(0.5, 0, "ДЗЗ-3", 0.15, false);
+        Satellite[] satellites = {s1, s2, d1, d2, d3};
 
-        Satellite[] satellites = new Satellite[]{s1, s2, d1, d2, d3};
         for (Satellite s : satellites) {
-            System.out.println("Создан спутник: " + s.name + " (заряд: " + (int) (s.batteryLevel * 100) + "%)");
+            System.out.println("Создан спутник: " + s.getName() +
+                    " (" + s.getBatteryLevel() + ")");
         }
-        SatelliteConstellation sc = new SatelliteConstellation("RU BASIC");
+
         System.out.println("---------------------------------------------");
-        System.out.println("Создана спутниковая группировка:" + sc.getConstellationName());
-        System.out.println("""
-                ---------------------------------------------
-                ФОРМИРОВАНИЕ ГРУППИРОВКИ:
-                -----------------------------------""");
-        for (Satellite s : satellites) {
-            sc.addSatellite(s);
-        }
-        System.out.println("---------------------------------------------");
-        System.out.println(sc.getSatellite());
-        System.out.println("""
-                -----------------------------------
-                 АКТИВАЦИЯ СПУТНИКОВ:
-                -------------------------""");
 
-        for (Satellite s : satellites) {
-            if(s.activate()){
-                System.out.println("✅ " + s.name +" Активация успешна");
-            }else{
-                System.out.println("\uD83D\uDED1 " + s.name +" Ошибка активации " + "(заряд: " + (int)(s.batteryLevel * 100) + "%)");
-            }
-        }
-        System.out.println("ВЫПОЛНЕНИЕ МИССИЙ ГРУППИРОВКИ " + sc.getConstellationName());
-        System.out.println("==================================================");
-        sc.executeAllMission();
-        System.out.println(sc.getSatellite());
+        service.createAndSaveConstellation("Орбита-1");
+        service.createAndSaveConstellation("Орбита-2");
+
+        System.out.println("\n📡 ДОБАВЛЕНИЕ СПУТНИКОВ:");
+        service.addSatelliteToConstellation("Орбита-1", s1);
+        service.addSatelliteToConstellation("Орбита-1", d1);
+        service.addSatelliteToConstellation("Орбита-1", d2);
+
+        service.addSatelliteToConstellation("Орбита-2", s2);
+        service.addSatelliteToConstellation("Орбита-2", d3);
+
+        service.activateAllSatellites("Орбита-1");
+        service.executeConstellationMission("Орбита-1");
+        service.showConstellationStatus("Орбита-1");
+
+        System.out.println("\nВСЕ ГРУППИРОВКИ В РЕПОЗИТОРИИ:");
+        service.printAllSatelliteConstellations();
     }
 }

@@ -1,22 +1,39 @@
 package org.example;
 
+import lombok.Data;
+
+@Data
 public abstract class Satellite {
     protected String name;
-    protected boolean isActive;
-    protected double batteryLevel;
+    protected SatelliteState state;
+    protected EnergySystem energy;
+
+
+    protected Satellite(String name, double batteryLevel) {
+        this.name = name;
+        this.state = new SatelliteState();
+        this.energy = new EnergySystem(batteryLevel);
+    }
 
     public boolean activate() {
-        if (this.batteryLevel > 0.2) {
-            this.isActive = true;
+        if (energy.hasEnoughEnergy(0.2)) {
+            state.activate();
             return true;
         }
-        this.isActive = false;
+        state.deactivate();
         return false;
+    }
+    public boolean isActive() {
+        return state.isActive();
+    }
+
+    public double getBatteryLevel(){
+        return energy.getBatteryLevel();
     }
 
     public void deactivate() {
-        if (this.isActive) {
-            this.isActive = false;
+        if (state.isActive()) {
+            state.deactivate();
             System.out.println("Спутник выключен");
         } else {
             System.out.println("Спутник уже выключен");
@@ -24,10 +41,11 @@ public abstract class Satellite {
     }
 
     public void consumeBattery(double amount) {
-        this.batteryLevel -= amount;
-        if (this.batteryLevel < 0.2) {
-            deactivate();
+        energy.consume(amount);
+        if (!energy.hasEnoughEnergy(0.2)) {
+            state.deactivate();
         }
     }
     protected abstract void performMission();
+
 }
