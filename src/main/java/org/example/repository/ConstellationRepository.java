@@ -22,7 +22,8 @@ public class ConstellationRepository {
     public Map<String, SatelliteConstellation> findAll() {
         return constellations;
     }
-    public void delete(String name){
+
+    public void delete(String name) {
         constellations.remove(name);
     }
 }
