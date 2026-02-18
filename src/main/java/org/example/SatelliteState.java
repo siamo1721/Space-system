@@ -1,17 +1,21 @@
 package org.example;
 
-public class SatelliteState {
-    private boolean active;
+import lombok.Data;
 
-    public boolean isActive(){
-        return active;
-    }
+@Data
+public class SatelliteState {
+
+    private boolean active;
+    private String statusMessage = "Не активирован";
 
     public void activate() {
         active = true;
+        statusMessage = "Активен";
     }
 
     public void deactivate() {
         active = false;
+        statusMessage = "Не активирован";
     }
+
 }

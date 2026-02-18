@@ -1,8 +1,11 @@
 package org.example;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class SatelliteConstellation {
     private  String constellationName;
     private List<Satellite> satelliteList = new ArrayList<>();
@@ -15,9 +18,6 @@ public class SatelliteConstellation {
         return satelliteList;
     }
 
-    public String getConstellationName(){
-        return this.constellationName;
-    }
     public void executeAllMission(){
         for(Satellite el : satelliteList){
             el.performMission();

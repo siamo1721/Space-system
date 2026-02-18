@@ -1,5 +1,8 @@
 package org.example;
 
+import lombok.Data;
+
+@Data
 public abstract class Satellite {
     protected String name;
     protected SatelliteState state;
@@ -44,4 +47,5 @@ public abstract class Satellite {
         }
     }
     protected abstract void performMission();
+
 }
