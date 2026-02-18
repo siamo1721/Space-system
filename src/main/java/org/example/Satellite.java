@@ -12,7 +12,9 @@ public abstract class Satellite {
     protected Satellite(String name, double batteryLevel) {
         this.name = name;
         this.state = new SatelliteState();
-        this.energy = new EnergySystem(batteryLevel);
+        this.energy = EnergySystem.builder().
+                batteryLevel(batteryLevel)
+                .build();
     }
 
     public boolean activate() {
@@ -23,11 +25,12 @@ public abstract class Satellite {
         state.deactivate();
         return false;
     }
+
     public boolean isActive() {
         return state.isActive();
     }
 
-    public double getBatteryLevel(){
+    public double getBatteryLevel() {
         return energy.getBatteryLevel();
     }
 
@@ -46,6 +49,7 @@ public abstract class Satellite {
             state.deactivate();
         }
     }
+
     protected abstract void performMission();
 
 }
