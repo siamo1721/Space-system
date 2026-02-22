@@ -8,4 +8,9 @@ public class ImagingSatelliteFactory extends SatelliteFactory {
     public Satellite createSatelliteWithParam(String name, double batteryLevel, double extraParameter) {
         return new ImagingSatellite(name, batteryLevel, extraParameter);
     }
+
+    @Override
+    public Satellite createSatellite(String name, double batteryLevel) {
+        return null;
+    }
 }

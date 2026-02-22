@@ -28,11 +28,11 @@ public class Main {
         System.out.println("\nСОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:");
         System.out.println("---------------------------------------------");
 
-        Satellite s1 = communicationSatelliteFactory.createSatellite("Связь-1", 500, 0.85);
-        Satellite s2 = communicationSatelliteFactory.createSatellite("Связь-2", 1000, 0.75);
-        Satellite d1 = imagingSatelliteFactory.createSatellite("ДЗЗ-1", 2.5, 0.92);
-        Satellite d2 = imagingSatelliteFactory.createSatellite("ДЗЗ-2", 1.0, 0.45);
-        Satellite d3 = imagingSatelliteFactory.createSatellite("ДЗЗ-3", 0.5, 0.15);
+        Satellite s1 = communicationSatelliteFactory.createSatelliteWithParam("Связь-1", 500, 0.85);
+        Satellite s2 = communicationSatelliteFactory.createSatelliteWithParam("Связь-2", 1000, 0.75);
+        Satellite d1 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-1", 2.5, 0.92);
+        Satellite d2 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-2", 1.0, 0.45);
+        Satellite d3 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-3", 0.5, 0.15);
 
         Satellite[] satellites = {s1, s2, d1, d2, d3};
 
