@@ -2,15 +2,30 @@ package org.example.factory;
 
 import org.example.CommunicationSatellite;
 import org.example.Satellite;
+import org.example.entity.SatelliteType;
+import org.example.param.CommunicationSatelliteParam;
+import org.example.param.SatelliteParam;
+import org.springframework.stereotype.Component;
 
-public class CommunicationSatelliteFactory extends SatelliteFactory {
+@Component
+public class CommunicationSatelliteFactory implements SatelliteFactory {
+
     @Override
-    public Satellite createSatelliteWithParam(String name, double batteryLevel, double extraParameter) {
-        return new CommunicationSatellite(name, batteryLevel, extraParameter);
+    public Satellite createSatelliteWithParameter(SatelliteParam param) {
+
+        if (!(param instanceof CommunicationSatelliteParam communicationSatelliteParam)) {
+            throw new RuntimeException("Не верные параметры для communication satellite");
+        }
+
+        return new CommunicationSatellite(
+                communicationSatelliteParam.getName(),
+                communicationSatelliteParam.getBatteryLevel(),
+                communicationSatelliteParam.getBandwidth()
+        );
     }
 
     @Override
-    public Satellite createSatellite(String name, double batteryLevel) {
-        return null;
+    public boolean isSatelliteTypeSupported(SatelliteType type) {
+        return type == SatelliteType.COMMUNICATION;
     }
 }
