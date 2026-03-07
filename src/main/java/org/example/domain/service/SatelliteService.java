@@ -1,7 +1,7 @@
-package org.example.service;
+package org.example.domain.service;
 
 import org.example.Satellite;
-import org.example.param.SatelliteParam;
+import org.example.domain.dto.param.SatelliteParam;
 
 public interface SatelliteService {
     Satellite createSatellite(SatelliteParam param);

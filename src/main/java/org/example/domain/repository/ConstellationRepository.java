@@ -1,4 +1,4 @@
-package org.example.repository;
+package org.example.domain.repository;
 
 import org.example.SatelliteConstellation;
 import org.springframework.stereotype.Repository;

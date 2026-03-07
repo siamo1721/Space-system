@@ -1,5 +1,5 @@
 import org.example.SatelliteConstellation;
-import org.example.repository.ConstellationRepository;
+import org.example.domain.repository.ConstellationRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

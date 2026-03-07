@@ -1,8 +1,8 @@
 import org.example.ImagingSatellite;
 import org.example.Main;
 import org.example.Satellite;
-import org.example.param.ImagingSatelliteParam;
-import org.example.service.SatelliteService;
+import org.example.domain.dto.param.impl.ImagingSatelliteParam;
+import org.example.domain.service.SatelliteService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

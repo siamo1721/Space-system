@@ -1,11 +1,11 @@
-package org.example.factory.impl;
+package org.example.domain.factory.impl;
 
 import org.example.CommunicationSatellite;
 import org.example.Satellite;
-import org.example.entity.SatelliteType;
-import org.example.factory.SatelliteFactory;
-import org.example.param.CommunicationSatelliteParam;
-import org.example.param.SatelliteParam;
+import org.example.domain.entity.SatelliteType;
+import org.example.domain.factory.SatelliteFactory;
+import org.example.domain.dto.param.impl.CommunicationSatelliteParam;
+import org.example.domain.dto.param.SatelliteParam;
 import org.springframework.stereotype.Component;
 
 @Component

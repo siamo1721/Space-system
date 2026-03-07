@@ -1,7 +1,7 @@
 import org.example.Main;
 import org.example.Satellite;
-import org.example.repository.ConstellationRepository;
-import org.example.service.SpaceOperationCenterService;
+import org.example.domain.repository.ConstellationRepository;
+import org.example.domain.service.ConstellationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ class ConstellationRepositoryIntegrationTest {
     private ConstellationRepository repository;
 
     @Autowired
-    private SpaceOperationCenterService service;
+    private ConstellationService service;
 
     private static final String CONSTELLATION_NAME = "Орбита-Интеграция";
 

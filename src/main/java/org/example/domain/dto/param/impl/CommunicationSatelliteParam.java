@@ -1,7 +1,8 @@
-package org.example.param;
+package org.example.domain.dto.param.impl;
 
 import lombok.Getter;
-import org.example.entity.SatelliteType;
+import org.example.domain.entity.SatelliteType;
+import org.example.domain.dto.param.SatelliteParam;
 
 @Getter
 public class CommunicationSatelliteParam extends SatelliteParam {

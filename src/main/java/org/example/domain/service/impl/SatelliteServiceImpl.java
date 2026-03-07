@@ -1,10 +1,10 @@
-package org.example.service.impl;
+package org.example.domain.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.example.Satellite;
-import org.example.factory.SatelliteFactory;
-import org.example.param.SatelliteParam;
-import org.example.service.SatelliteService;
+import org.example.domain.factory.SatelliteFactory;
+import org.example.domain.dto.param.SatelliteParam;
+import org.example.domain.service.SatelliteService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

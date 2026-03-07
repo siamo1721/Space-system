@@ -1,8 +1,8 @@
-package org.example.param;
+package org.example.domain.dto.param;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.example.entity.SatelliteType;
+import org.example.domain.entity.SatelliteType;
 
 @AllArgsConstructor
 @Getter
