@@ -1,9 +1,11 @@
 package org.example.factory;
 
 import org.example.Satellite;
+import org.example.entity.SatelliteType;
+import org.example.param.SatelliteParam;
 
-public abstract class SatelliteFactory {
-    public abstract Satellite createSatelliteWithParam(String name, double batteryLevel, double extraParameter);
-    public abstract Satellite createSatellite(String name, double batteryLevel);
+public interface SatelliteFactory {
+    Satellite createSatelliteWithParameter(SatelliteParam param);
+    boolean isSatelliteTypeSupported(SatelliteType type);
 
 }
