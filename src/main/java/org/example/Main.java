@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.factory.CommunicationSatelliteFactory;
+import org.example.factory.ImagingSatelliteFactory;
 import org.example.service.SpaceOperationCenterService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,17 +18,21 @@ public class Main {
         SpaceOperationCenterService service =
                 context.getBean(SpaceOperationCenterService.class);
 
+        ImagingSatelliteFactory imagingSatelliteFactory = new ImagingSatelliteFactory();
+
+        CommunicationSatelliteFactory communicationSatelliteFactory = new CommunicationSatelliteFactory();
+
         System.out.println("ЗАПУСК СИСТЕМЫ УПРАВЛЕНИЯ СПУТНИКОВОЙ ГРУППИРОВКОЙ");
         System.out.println("============================================================");
 
         System.out.println("\nСОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:");
         System.out.println("---------------------------------------------");
 
-        Satellite s1 = new CommunicationSatellite("Связь-1", 500, 0.85);
-        Satellite s2 = new CommunicationSatellite("Связь-2", 1000, 0.75);
-        Satellite d1 = new ImagingSatellite("ДЗЗ-1", 2.5, 0.92);
-        Satellite d2 = new ImagingSatellite("ДЗЗ-2", 1.0, 0.45);
-        Satellite d3 = new ImagingSatellite("ДЗЗ-3", 0.5, 0.15);
+        Satellite s1 = communicationSatelliteFactory.createSatelliteWithParam("Связь-1", 500, 0.85);
+        Satellite s2 = communicationSatelliteFactory.createSatelliteWithParam("Связь-2", 1000, 0.75);
+        Satellite d1 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-1", 2.5, 0.92);
+        Satellite d2 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-2", 1.0, 0.45);
+        Satellite d3 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-3", 0.5, 0.15);
 
         Satellite[] satellites = {s1, s2, d1, d2, d3};
 

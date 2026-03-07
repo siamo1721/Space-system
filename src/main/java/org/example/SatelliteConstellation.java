@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class SatelliteConstellation {
     private  String constellationName;
-    private List<Satellite> satelliteList = new ArrayList<>();
+    private List<Satellite> satelliteList;
 
     public void addSatellite(Satellite satellite){
         satelliteList.add(satellite);
