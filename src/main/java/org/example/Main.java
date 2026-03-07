@@ -1,7 +1,9 @@
 package org.example;
 
-import org.example.factory.CommunicationSatelliteFactory;
-import org.example.factory.ImagingSatelliteFactory;
+import org.example.param.CommunicationSatelliteParam;
+import org.example.param.ImagingSatelliteParam;
+import org.example.param.SatelliteParam;
+import org.example.service.SatelliteService;
 import org.example.service.SpaceOperationCenterService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,9 +20,10 @@ public class Main {
         SpaceOperationCenterService service =
                 context.getBean(SpaceOperationCenterService.class);
 
-        ImagingSatelliteFactory imagingSatelliteFactory = new ImagingSatelliteFactory();
+        SatelliteService satelliteService =
+                context.getBean(SatelliteService.class);
 
-        CommunicationSatelliteFactory communicationSatelliteFactory = new CommunicationSatelliteFactory();
+
 
         System.out.println("ЗАПУСК СИСТЕМЫ УПРАВЛЕНИЯ СПУТНИКОВОЙ ГРУППИРОВКОЙ");
         System.out.println("============================================================");
@@ -28,11 +31,17 @@ public class Main {
         System.out.println("\nСОЗДАНИЕ СПЕЦИАЛИЗИРОВАННЫХ СПУТНИКОВ:");
         System.out.println("---------------------------------------------");
 
-        Satellite s1 = communicationSatelliteFactory.createSatelliteWithParam("Связь-1", 500, 0.85);
-        Satellite s2 = communicationSatelliteFactory.createSatelliteWithParam("Связь-2", 1000, 0.75);
-        Satellite d1 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-1", 2.5, 0.92);
-        Satellite d2 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-2", 1.0, 0.45);
-        Satellite d3 = imagingSatelliteFactory.createSatelliteWithParam("ДЗЗ-3", 0.5, 0.15);
+        SatelliteParam s1Param = new CommunicationSatelliteParam("Связь-1", 500, 0.85);
+        SatelliteParam s2Param = new CommunicationSatelliteParam("Связь-2", 1000, 0.75);
+        SatelliteParam d1Param = new ImagingSatelliteParam("ДЗЗ-1", 2.5, 0.92);
+        SatelliteParam d2Param = new CommunicationSatelliteParam("ДЗЗ-2", 1.0, 0.45);
+        SatelliteParam d3Param = new CommunicationSatelliteParam("ДЗЗ-3", 0.5, 0.15);
+
+        Satellite s1 = satelliteService.createSatellite(s1Param);
+        Satellite s2 = satelliteService.createSatellite(s2Param);
+        Satellite d1 = satelliteService.createSatellite(d1Param);
+        Satellite d2 = satelliteService.createSatellite(d2Param);
+        Satellite d3 = satelliteService.createSatellite(d3Param);
 
         Satellite[] satellites = {s1, s2, d1, d2, d3};
 
