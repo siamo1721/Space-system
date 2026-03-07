@@ -9,10 +9,9 @@ import org.example.domain.dto.response.MissionResponse;
 import java.util.List;
 
 public interface SpaceOperationCenterService {
-     AddSatelliteResponse addSatellite(AddSatelliteRequest addSatelliteRequest);
-     MissionResponse executeMission(MissionRequest missionRequest);
+    AddSatelliteResponse addSatellite(AddSatelliteRequest addSatelliteRequest);
+    MissionResponse executeMission(MissionRequest missionRequest);
     void showConstellationStatus(String constellationName);
-
     void printAllSatelliteConstellations();
     void createAndSaveConstellation(String name);
     List<Satellite> getSatellitesInConstellation(String constellationName);

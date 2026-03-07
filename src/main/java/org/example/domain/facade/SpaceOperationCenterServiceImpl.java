@@ -3,6 +3,7 @@ package org.example.domain.facade;
 import lombok.RequiredArgsConstructor;
 import org.example.Satellite;
 import org.example.SatelliteConstellation;
+import org.example.aop.annotation.LogExecutionTime;
 import org.example.domain.dto.request.AddSatelliteRequest;
 import org.example.domain.dto.request.MissionRequest;
 import org.example.domain.dto.response.AddSatelliteResponse;
@@ -21,6 +22,7 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
     private final ConstellationService constellationService;
     private final SatelliteService satelliteService;
 
+    @LogExecutionTime
     @Override
     public AddSatelliteResponse addSatellite(AddSatelliteRequest addSatelliteRequest) {
         Satellite satellite = satelliteService.createSatellite(addSatelliteRequest.getParam());
@@ -35,6 +37,7 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
                 .build();
     }
 
+    @LogExecutionTime
     @Override
     public MissionResponse executeMission(MissionRequest missionRequest) {
 

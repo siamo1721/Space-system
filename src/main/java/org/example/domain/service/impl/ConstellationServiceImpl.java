@@ -13,12 +13,14 @@ public class ConstellationServiceImpl implements ConstellationService {
 
     private final ConstellationRepository repository;
 
+    @Override
     public void createAndSaveConstellation(String name) {
         SatelliteConstellation constellation = new SatelliteConstellation(name);
         System.out.println("Создана спутниковая группировка: " + name);
         repository.save(constellation);
     }
 
+    @Override
     public void addSatelliteToConstellation(String constellationName, Satellite satellite) {
         SatelliteConstellation constellation = repository.findByName(constellationName);
         constellation.addSatellite(satellite);
@@ -26,12 +28,14 @@ public class ConstellationServiceImpl implements ConstellationService {
                 " в группировку " + constellationName);
     }
 
+    @Override
     public void executeConstellationMission(String constellationName) {
         SatelliteConstellation constellation = findByNameConstellation(constellationName);
         System.out.println("\n=== ВЫПОЛНЕНИЕ МИССИЙ ДЛЯ ГРУППИРОВКИ: " + constellationName + " ===");
         constellation.executeAllMission();
     }
 
+    @Override
     public void activateAllSatellites(String constellationName) {
         SatelliteConstellation constellation = findByNameConstellation(constellationName);
         for (Satellite s : constellation.getSatellite()) {
@@ -40,6 +44,7 @@ public class ConstellationServiceImpl implements ConstellationService {
         }
     }
 
+    @Override
     public SatelliteConstellation findByNameConstellation(String name){
         SatelliteConstellation constellation = repository.findByName(name);
         if (constellation == null){
@@ -48,6 +53,7 @@ public class ConstellationServiceImpl implements ConstellationService {
         return constellation;
     }
 
+    @Override
     public void printAllSatelliteConstellations() {
         System.out.println(repository.findAll());
     }
