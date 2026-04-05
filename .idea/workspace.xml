@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="df02230d-5045-465d-99b4-d59f11ac2467" name="Changes" comment="feat(aop): Добавление aop логирование" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/Users/siamo/IdeaProjects/SeminarSDFirst" value="36WUnOMRaBpPl0UthmWun3zd7qI" />
+    </persistenceIdMap>
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SeminarSDFirst" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/TASK-7-SOLID" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;siamo1721&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/siamo1721/Space-system.git&quot;,
+    &quot;accountId&quot;: &quot;7e18f209-9723-4398-bc70-76d9d0331a8d&quot;
+  },
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
+    },
+    &quot;owner&quot;: &quot;siamo1721&quot;,
+    &quot;repository&quot;: &quot;Space-system&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="36WUnOMRaBpPl0UthmWun3zd7qI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build SeminarSDFirst.executor": "Run",
+    "Gradle.ConstellationRepositoryIntegrationTest.executor": "Run",
+    "Gradle.ConstellationRepositoryMockTest.executor": "Run",
+    "Gradle.ConstellationRepositoryUnitTest.executor": "Run",
+    "Gradle.ConstellationRepositoryUnitTest.shouldAddSatelliteToConstellation.executor": "Run",
+    "Gradle.ConstellationRepositoryUnitTest.shouldReturnConstellations.executor": "Run",
+    "Gradle.ConstellationRepositoryUnitTest.shouldReturnEmptyMapIfRepositoryIsEmpty.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.SatelliteServiceTest.executor": "Run",
+    "Gradle.SeminarSDFirst [:org.example.Main.main()].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.Main.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/siamo/IdeaProjects/SeminarSDFirst/src/main/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.example.aop" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Main">
+    <configuration name="ConstellationRepositoryIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConstellationRepositoryIntegrationTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConstellationRepositoryMockTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConstellationRepositoryMockTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConstellationRepositoryUnitTest.shouldReturnConstellations" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConstellationRepositoryUnitTest.shouldReturnConstellations&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ConstellationRepositoryUnitTest.shouldReturnEmptyMapIfRepositoryIsEmpty" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ConstellationRepositoryUnitTest.shouldReturnEmptyMapIfRepositoryIsEmpty&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SatelliteServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;SatelliteServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Main" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="SeminarSDFirst.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.Main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.SatelliteServiceTest" />
+      <item itemvalue="Gradle.ConstellationRepositoryIntegrationTest" />
+      <item itemvalue="Gradle.ConstellationRepositoryMockTest" />
+      <item itemvalue="Gradle.ConstellationRepositoryUnitTest.shouldReturnConstellations" />
+      <item itemvalue="Gradle.ConstellationRepositoryUnitTest.shouldReturnEmptyMapIfRepositoryIsEmpty" />
+      <item itemvalue="Spring Boot.Main" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.SatelliteServiceTest" />
+        <item itemvalue="Gradle.ConstellationRepositoryIntegrationTest" />
+        <item itemvalue="Gradle.ConstellationRepositoryMockTest" />
+        <item itemvalue="Gradle.ConstellationRepositoryUnitTest.shouldReturnEmptyMapIfRepositoryIsEmpty" />
+        <item itemvalue="Gradle.ConstellationRepositoryUnitTest.shouldReturnConstellations" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="df02230d-5045-465d-99b4-d59f11ac2467" name="Changes" comment="" />
+      <created>1765121987549</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765121987549</updated>
+      <workItem from="1765121989991" duration="38000" />
+      <workItem from="1765122037811" duration="7179000" />
+      <workItem from="1769337278743" duration="9121000" />
+      <workItem from="1770542722136" duration="3876000" />
+      <workItem from="1771150802978" duration="1272000" />
+      <workItem from="1771435708980" duration="3532000" />
+      <workItem from="1771764778774" duration="3163000" />
+      <workItem from="1771870435515" duration="141000" />
+      <workItem from="1772878610716" duration="11093000" />
+      <workItem from="1775384534848" duration="845000" />
+      <workItem from="1775386320458" duration="257000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat(common): Добавление spring boot и репозитория с сервисом">
+      <option name="closed" value="true" />
+      <created>1769346312192</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769346312192</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat(common): Добавление Lombok и тестов">
+      <option name="closed" value="true" />
+      <created>1770546009798</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1770546009798</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactor(common): Добавление build и factory паттернов в некоторые классы">
+      <option name="closed" value="true" />
+      <created>1771438545133</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1771438545133</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refactor(common): Добавление build и factory паттернов в некоторые классы">
+      <option name="closed" value="true" />
+      <created>1771764987182</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1771764987182</updated>
+    </task>
+    <task id="LOCAL-00005" summary="refactor(common): Добавление factory method и strategy">
+      <option name="closed" value="true" />
+      <created>1771767945098</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1771767945099</updated>
+    </task>
+    <task id="LOCAL-00006" summary="refactor(common): Добавление директории impl">
+      <option name="closed" value="true" />
+      <created>1772881311927</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1772881311928</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat(common): Добавление структурного паттерна Facade">
+      <option name="closed" value="true" />
+      <created>1772888406897</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1772888406897</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat(common): Добавление структурного паттерна Facade">
+      <option name="closed" value="true" />
+      <created>1772888419952</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1772888419952</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat(aop): Добавление aop логирование">
+      <option name="closed" value="true" />
+      <created>1772889684183</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1772889684183</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(common): Добавление spring boot и репозитория с сервисом" />
+    <MESSAGE value="feat(common): Добавление Lombok и тестов" />
+    <MESSAGE value="refactor(common): Добавление build и factory паттернов в некоторые классы" />
+    <MESSAGE value="refactor(common): Добавление factory method и strategy" />
+    <MESSAGE value="refactor(common): Добавление директории impl" />
+    <MESSAGE value="feat(common): Добавление струтуроного паттерна Facade" />
+    <MESSAGE value="feat(common): Добавление структурного паттерна Facade" />
+    <MESSAGE value="feat(aop): Добавление aop логирование" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(aop): Добавление aop логирование" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
