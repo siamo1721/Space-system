@@ -1,0 +1,19 @@
+FROM gradle:8.5-jdk21 AS build
+WORKDIR /app
+COPY . .
+
+RUN gradle clean build -x test
+
+FROM eclipse-temurin:21-jre-jammy
+
+WORKDIR /app
+
+RUN useradd -ms /bin/bash appuser
+
+COPY --from=build /app/build/libs/*.jar app.jar
+
+USER appuser
+
+EXPOSE 8081
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

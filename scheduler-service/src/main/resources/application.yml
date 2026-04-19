@@ -3,7 +3,7 @@ server:
 
 app:
   space-center-service:
-    url: "http://localhost:8080/api"
+    url: ${SERVER_URL:http://localhost:8080/api}
     missions:
         - targetType: CONSTELLATION
           constellationName: "GeoStationary"
@@ -13,5 +13,5 @@ app:
           satelliteName: "Sat-1"
           cron: "0 30 8 * * MON"  # каждый понедельник в 8:30
         - targetType: CONSTELLATION
-          constellationName: "TestConstellation"
+          constellationName: "Орбита-1"
           cron: "0 */1 * * * *"   # каждую минуту
