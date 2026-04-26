@@ -1,4 +1,4 @@
-package org.example.domain.entity;
+package org.example.domain.entity.enums;
 
 public enum MissionType {
     IMAGING,

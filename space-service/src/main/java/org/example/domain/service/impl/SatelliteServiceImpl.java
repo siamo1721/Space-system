@@ -1,7 +1,7 @@
 package org.example.domain.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.example.Satellite;
+import org.example.domain.entity.Satellite;
 import org.example.domain.factory.SatelliteFactory;
 import org.example.domain.dto.param.SatelliteParam;
 import org.example.domain.service.SatelliteService;

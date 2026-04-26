@@ -1,8 +1,8 @@
 package org.example.domain.service.impl;
 
 import lombok.AllArgsConstructor;
-import org.example.Satellite;
-import org.example.SatelliteConstellation;
+import org.example.domain.entity.Satellite;
+import org.example.domain.entity.SatelliteConstellation;
 import org.example.domain.repository.ConstellationRepository;
 import org.example.domain.service.ConstellationService;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class ConstellationServiceImpl implements ConstellationService {
 
     @Override
     public void addSatelliteToConstellation(String constellationName, Satellite satellite) {
-        SatelliteConstellation constellation = repository.findByName(constellationName);
+        SatelliteConstellation constellation = repository.findByConstellationName(constellationName).orElseThrow();
         constellation.addSatellite(satellite);
         System.out.println("Добавлен спутник " + satellite.getName() +
                 " в группировку " + constellationName);
@@ -46,11 +46,7 @@ public class ConstellationServiceImpl implements ConstellationService {
 
     @Override
     public SatelliteConstellation findByNameConstellation(String name){
-        SatelliteConstellation constellation = repository.findByName(name);
-        if (constellation == null){
-            throw new RuntimeException("Группировка не найдена: " + name);
-        }
-        return constellation;
+        return repository.findByConstellationName(name).orElseThrow();
     }
 
     @Override

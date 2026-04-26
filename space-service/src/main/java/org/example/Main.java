@@ -5,7 +5,7 @@ import org.example.domain.dto.request.MissionRequest;
 import org.example.domain.dto.param.impl.CommunicationSatelliteParam;
 import org.example.domain.dto.param.impl.ImagingSatelliteParam;
 import org.example.domain.dto.param.SatelliteParam;
-import org.example.domain.entity.MissionType;
+import org.example.domain.entity.enums.MissionType;
 import org.example.domain.facade.SpaceOperationCenterService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

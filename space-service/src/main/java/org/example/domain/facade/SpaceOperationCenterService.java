@@ -1,10 +1,10 @@
 package org.example.domain.facade;
 
-import org.example.Satellite;
 import org.example.domain.dto.request.AddSatelliteRequest;
 import org.example.domain.dto.request.MissionRequest;
 import org.example.domain.dto.response.AddSatelliteResponse;
 import org.example.domain.dto.response.MissionResponse;
+import org.example.domain.entity.Satellite;
 
 import java.util.List;
 

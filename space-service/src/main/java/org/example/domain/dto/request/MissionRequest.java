@@ -2,7 +2,7 @@ package org.example.domain.dto.request;
 
 import lombok.Builder;
 import lombok.Data;
-import org.example.domain.entity.MissionType;
+import org.example.domain.entity.enums.MissionType;
 
 @Data
 @Builder

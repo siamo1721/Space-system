@@ -1,29 +1,10 @@
 package org.example.domain.repository;
 
-import org.example.SatelliteConstellation;
-import org.springframework.stereotype.Repository;
+import org.example.domain.entity.SatelliteConstellation;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
-@Repository
-public class ConstellationRepository {
-    private final Map<String, SatelliteConstellation> constellations = new HashMap<>();
-
-    public void save(SatelliteConstellation constellation) {
-        constellations.put(constellation.getConstellationName(), constellation);
-        System.out.println("Сохранена группировка: " + constellation.getConstellationName());
-    }
-
-    public SatelliteConstellation findByName(String name) {
-        return constellations.get(name);
-    }
-
-    public Map<String, SatelliteConstellation> findAll() {
-        return constellations;
-    }
-
-    public void delete(String name) {
-        constellations.remove(name);
-    }
+public interface ConstellationRepository extends JpaRepository<SatelliteConstellation, Long> {
+    Optional<SatelliteConstellation> findByConstellationName(String constellationName);
 }

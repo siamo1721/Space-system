@@ -1,7 +1,7 @@
 package org.example.domain.service;
 
-import org.example.Satellite;
-import org.example.SatelliteConstellation;
+import org.example.domain.entity.Satellite;
+import org.example.domain.entity.SatelliteConstellation;
 
 public interface ConstellationService {
     void createAndSaveConstellation(String name);

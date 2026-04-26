@@ -1,8 +1,8 @@
 package org.example.domain.factory.impl;
 
-import org.example.ImagingSatellite;
-import org.example.Satellite;
-import org.example.domain.entity.SatelliteType;
+import org.example.domain.entity.ImagingSatellite;
+import org.example.domain.entity.Satellite;
+import org.example.domain.entity.enums.SatelliteType;
 import org.example.domain.factory.SatelliteFactory;
 import org.example.domain.dto.param.impl.ImagingSatelliteParam;
 import org.example.domain.dto.param.SatelliteParam;

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.example.domain.entity.enums.SatelliteType;
 import org.example.domain.dto.param.impl.CommunicationSatelliteParam;
 import org.example.domain.dto.param.impl.ImagingSatelliteParam;
 import org.example.domain.entity.SatelliteType;

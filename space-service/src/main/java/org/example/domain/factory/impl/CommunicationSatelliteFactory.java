@@ -1,8 +1,8 @@
 package org.example.domain.factory.impl;
 
-import org.example.CommunicationSatellite;
-import org.example.Satellite;
-import org.example.domain.entity.SatelliteType;
+import org.example.domain.entity.CommunicationSatellite;
+import org.example.domain.entity.Satellite;
+import org.example.domain.entity.enums.SatelliteType;
 import org.example.domain.factory.SatelliteFactory;
 import org.example.domain.dto.param.impl.CommunicationSatelliteParam;
 import org.example.domain.dto.param.SatelliteParam;

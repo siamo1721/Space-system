@@ -1,7 +1,7 @@
 package org.example.domain.dto.param.impl;
 
 import lombok.Getter;
-import org.example.domain.entity.SatelliteType;
+import org.example.domain.entity.enums.SatelliteType;
 import org.example.domain.dto.param.SatelliteParam;
 
 @Getter

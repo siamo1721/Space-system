@@ -1,13 +1,13 @@
 package org.example.domain.facade;
 
 import lombok.RequiredArgsConstructor;
-import org.example.Satellite;
-import org.example.SatelliteConstellation;
 import org.example.aop.annotation.LogExecutionTime;
 import org.example.domain.dto.request.AddSatelliteRequest;
 import org.example.domain.dto.request.MissionRequest;
 import org.example.domain.dto.response.AddSatelliteResponse;
 import org.example.domain.dto.response.MissionResponse;
+import org.example.domain.entity.Satellite;
+import org.example.domain.entity.SatelliteConstellation;
 import org.example.domain.service.ConstellationService;
 import org.example.domain.service.SatelliteService;
 import org.springframework.stereotype.Service;
