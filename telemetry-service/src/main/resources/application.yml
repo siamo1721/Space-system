@@ -1,6 +1,11 @@
 server:
   port: 8081
 
+grpc:
+  server:
+    port: 9091
+    enable-keep-alive: true
+
 app:
   space-center-service:
     url: ${SERVER_URL:http://localhost:8080/api}

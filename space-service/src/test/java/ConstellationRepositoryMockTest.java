@@ -1,4 +1,3 @@
-import org.example.SatelliteConstellation;
 import org.example.domain.repository.ConstellationRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

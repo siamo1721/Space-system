@@ -32,6 +32,12 @@ public abstract class Satellite {
     @JoinColumn(name = "constellation_id")
     private SatelliteConstellation constellation;
 
+    @Column(name = "internal_temperature")
+    protected Double internalTemperature = 20.0;
+
+    @Column(name = "external_temperature")
+    protected Double externalTemperature = -50.0;
+
     protected Satellite(String name, double batteryLevel) {
         this.name = name;
         this.state = new SatelliteState();

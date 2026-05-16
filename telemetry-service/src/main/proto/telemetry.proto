@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.example.telemetry";
+option java_outer_classname = "TelemetryProto";
+
+package telemetry;
+
+service TelemetryService {
+  rpc StreamTelemetry (TelemetryRequest) returns (stream TelemetryUpdate);
+}
+
+message TelemetryRequest {
+  string satelliteId = 1;
+}
+
+message TelemetryUpdate {
+  string satelliteId = 1;
+  double insideTemperature = 2;
+  double outsideTemperature = 3;
+}
