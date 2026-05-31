@@ -6,4 +6,9 @@ import org.example.domain.entity.Satellite;
 public interface SatelliteService {
     Satellite createSatellite(SatelliteParam param);
 
+    Satellite saveSatellite(Satellite satellite);
+
+    Satellite findByName(String name);
+
+    void deleteSatellite(String name);
 }

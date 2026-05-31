@@ -1,22 +1,18 @@
 server:
-  port: 8081
+  port: 8082
 
 grpc:
   server:
     port: 9091
     enable-keep-alive: true
 
-app:
-  space-center-service:
-    url: ${SERVER_URL:http://localhost:8080/api}
-    missions:
-        - targetType: CONSTELLATION
-          constellationName: "GeoStationary"
-          cron: "0 0 */6 * * *"  # каждые 6 часов
-        - targetType: SINGLE_SATELLITE
-          constellationName: "LowOrbit"
-          satelliteName: "Sat-1"
-          cron: "0 30 8 * * MON"  # каждый понедельник в 8:30
-        - targetType: CONSTELLATION
-          constellationName: "Орбита-1"
-          cron: "0 */1 * * * *"   # каждую минуту
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: telemetry-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: org.example.kafka.dto

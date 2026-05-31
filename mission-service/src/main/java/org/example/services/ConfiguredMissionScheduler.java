@@ -6,6 +6,7 @@ import org.example.client.SpaceOperationClient;
 import org.example.configuration.MissionConfig;
 import org.example.configuration.SpaceCenterProperties;
 import org.example.domain.MissionRequest;
+import org.example.kafka.SatelliteRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.TaskScheduler;
@@ -22,6 +23,7 @@ public class ConfiguredMissionScheduler {
     private final SpaceCenterProperties properties;
     private final TaskScheduler taskScheduler;
     private final SpaceOperationClient spaceOperationClient;
+    private final SatelliteRegistry satelliteRegistry;
 
     @PostConstruct
     public void scheduleMissions() {
@@ -40,6 +42,11 @@ public class ConfiguredMissionScheduler {
             );
 
             Runnable task = () -> {
+                if ("SINGLE_SATELLITE".equals(config.targetType())
+                        && !satelliteRegistry.isKnown(config.satelliteName())) {
+                    log.warn("Миссия пропущена: спутник {} ещё не зарегистрирован в системе", config.satelliteName());
+                    return;
+                }
                 log.info("Starting mission: {}", request);
                 spaceOperationClient.executeMission(request);
             };

@@ -25,6 +25,12 @@ public class SpaceOperationController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/satellites/{name}")
+    public ResponseEntity<Void> deleteSatellite(@PathVariable String name) {
+        spaceOperationCenterService.deleteSatellite(name);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/overview")
     public ResponseEntity<Void> overview() {
         spaceOperationCenterService.printAllSatelliteConstellations();

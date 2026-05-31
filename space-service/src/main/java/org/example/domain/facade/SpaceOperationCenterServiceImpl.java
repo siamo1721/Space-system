@@ -8,9 +8,11 @@ import org.example.domain.dto.response.AddSatelliteResponse;
 import org.example.domain.dto.response.MissionResponse;
 import org.example.domain.entity.Satellite;
 import org.example.domain.entity.SatelliteConstellation;
+import org.example.domain.kafka.SatelliteEventPublisher;
 import org.example.domain.service.ConstellationService;
 import org.example.domain.service.SatelliteService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +23,11 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
 
     private final ConstellationService constellationService;
     private final SatelliteService satelliteService;
+    private final SatelliteEventPublisher satelliteEventPublisher;
 
     @LogExecutionTime
     @Override
+    @Transactional
     public AddSatelliteResponse addSatellite(AddSatelliteRequest addSatelliteRequest) {
         Satellite satellite = satelliteService.createSatellite(addSatelliteRequest.getParam());
 
@@ -31,10 +35,26 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
 
         constellationService.addSatelliteToConstellation(satelliteConstellation.getConstellationName(), satellite);
 
+        satellite = satelliteService.saveSatellite(satellite);
+        satelliteEventPublisher.publishCreated(satellite);
+
         return AddSatelliteResponse.builder()
                 .satelliteName(satellite.getName())
                 .communicationName(satelliteConstellation.getConstellationName())
                 .build();
+    }
+
+    @LogExecutionTime
+    @Override
+    @Transactional
+    public void deleteSatellite(String satelliteName) {
+        Satellite satellite = satelliteService.findByName(satelliteName);
+        String constellationName = satellite.getConstellation() != null
+                ? satellite.getConstellation().getConstellationName()
+                : null;
+
+        satelliteService.deleteSatellite(satelliteName);
+        satelliteEventPublisher.publishDeleted(satellite, constellationName);
     }
 
     @LogExecutionTime

@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface SpaceOperationCenterService {
     AddSatelliteResponse addSatellite(AddSatelliteRequest addSatelliteRequest);
+    void deleteSatellite(String satelliteName);
     MissionResponse executeMission(MissionRequest missionRequest);
     void showConstellationStatus(String constellationName);
     void printAllSatelliteConstellations();
