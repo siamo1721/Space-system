@@ -1,6 +1,6 @@
 # Space System — система управления спутниковой группировкой
 
-Микросервисная система для симуляции управления спутниками: создание спутников, группировок и выполнение миссий.
+Микросервисная система для симуляции управления спутниками: создание спутников, группировок, выполнение миссий и асинхронный обмен событиями через Kafka.
 
 **Репозиторий:** https://github.com/siamo1721/Space-system
 
@@ -10,8 +10,34 @@
 |--------|------|----------|
 | `space-service` | 8080 | REST API управления спутниками и группировками |
 | `telemetry-service` | 9091 | gRPC-сервис телеметрии |
-| `mission-service` | — | Планировщик миссий (опционально) |
+| `mission-service` | 8081 | Планировщик миссий |
+| `kafka` | 9092 | Брокер сообщений (события о спутниках) |
 | PostgreSQL | 5432 | База данных |
+
+## Ключевой пользовательский сценарий
+
+**Роль:** оператор центра управления космической группировкой.
+
+**Бизнес-цель:** обеспечить непрерывную работу орбитальной группировки — от мониторинга состояния до запуска миссий и управления составом аппаратов.
+
+### Поток действий оператора
+
+```
+┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐     ┌──────────────────┐
+│ 1. Обзор        │ ──► │ 2. Добавление    │ ──► │ 3. Запуск       │ ──► │ 4. Вывод из      │
+│    группировок  │     │    спутника      │     │    миссии       │     │    эксплуатации  │
+│    GET /overview│     │ POST /add-sat... │     │ POST /missions  │     │ DELETE /sat...   │
+└─────────────────┘     └──────────────────┘     └─────────────────┘     └──────────────────┘
+```
+
+| Шаг | Действие оператора | API |
+|-----|-------------------|-----|
+| 1 | Просмотреть текущее состояние всех спутниковых группировок | `GET /api/overview` |
+| 2 | Добавить новый спутник связи в группировку «Орбита-1» | `POST /api/add-satellites` |
+| 3 | Запустить миссию (съёмка или передача данных) для группировки | `POST /api/missions` |
+| 4 | Удалить спутник при выводе из эксплуатации | `DELETE /api/satellites/{name}` |
+
+После шагов 2 и 4 события публикуются в Kafka — `mission-service` и `telemetry-service` узнают о составе группировки асинхронно.
 
 ## API-эндпоинты (`space-service`)
 
@@ -20,19 +46,22 @@
 | `GET` | `/api/overview` | Обзор всех спутниковых группировок |
 | `POST` | `/api/add-satellites` | Добавление спутника в группировку |
 | `POST` | `/api/missions` | Выполнение миссии для группировки |
+| `DELETE` | `/api/satellites/{name}` | Удаление спутника |
 
 ## Требования
 
 - Java 21
 - Docker и Docker Compose
-- Gradle 8.x (или используйте `./gradlew` из каталога сервиса)
+- Gradle 8.x (или `./gradlew` из каталога сервиса)
+- [k6](https://k6.io/) — для нагрузочного тестирования
 
 ## Быстрый запуск через Docker Compose
 
 Из корня репозитория:
 
 ```bash
-docker compose up -d postgres telemetry server
+docker compose up -d --build postgres kafka telemetry server
+```
 ```
 
 Сервис будет доступен по адресу: **http://localhost:8080**
@@ -53,12 +82,42 @@ curl http://localhost:8080/api/overview
 docker compose down
 ```
 
-## Локальный запуск без Docker (для разработки)
+## Нагрузочное тестирование
 
-### 1. Запустите PostgreSQL
+Тесты находятся в папке [`load-tests/`](load-tests/).
+
+### Профиль нагрузки
+
+- **Разгон:** 0 → 10 → 30 → **50** параллельных пользователей (VU)
+- **Удержание:** 60 секунд на пике (50 VU)
+- **Сценарий:** комбинированный — `GET` + `POST` + `DELETE` в одном цикле
+
+### Запуск
 
 ```bash
-docker compose up -d postgres
+# 1. Убедитесь, что приложение запущено
+docker compose up -d --build postgres kafka telemetry server
+
+# 2. Установите k6 (macOS)
+brew install k6
+
+# 3. Запустите тест
+cd load-tests
+chmod +x run-load-test.sh
+./run-load-test.sh
+
+# 4. Откройте HTML-отчёт
+open reports/load-test-report-latest.html
+```
+
+Подробности — в [`load-tests/README.md`](load-tests/README.md).
+
+## Локальный запуск без Docker (для разработки)
+
+### 1. Запустите PostgreSQL и Kafka
+
+```bash
+docker compose up -d postgres kafka
 ```
 
 ### 2. Запустите telemetry-service
@@ -79,8 +138,7 @@ cd space-service
 
 - Порт: `8080`
 - БД: `jdbc:postgresql://localhost:5432/space_db`
-- Логин/пароль: `postgres` / `postgres`
-- gRPC telemetry: `localhost:9091`
+- Kafka: `localhost:9092`
 
 ## Примеры запросов
 
@@ -117,8 +175,31 @@ curl -X POST http://localhost:8080/api/missions \
   }'
 ```
 
-## Автотесты
+**Удаление спутника:**
 
-Проект API-автотестов находится в отдельном репозитории: **space-service-api-tests**.
+```bash
+curl -X DELETE "http://localhost:8080/api/satellites/Связь-Test"
+```
 
-Перед запуском тестов убедитесь, что `space-service` запущен на `http://localhost:8080`.
+## Kafka — асинхронные события о спутниках
+
+| Топик | Описание |
+|-------|----------|
+| `satellite.created` | Спутник успешно создан |
+| `satellite.deleted` | Спутник удалён |
+| `satellite.events.dlt` | «Битые» сообщения (Dead Letter Topic) |
+
+```json
+{
+  "eventType": "SATELLITE_CREATED",
+  "satelliteId": 1,
+  "satelliteName": "Связь-1",
+  "satelliteType": "COMMUNICATION",
+  "constellationName": "Орбита-1",
+  "timestamp": "2026-05-31T12:00:00Z"
+}
+```
+
+## Автотесты API
+
+Функциональные API-тесты (JUnit + RestAssured + Allure) — в репозитории **space-service-api-tests** или папке `space-service-api-tests/`.

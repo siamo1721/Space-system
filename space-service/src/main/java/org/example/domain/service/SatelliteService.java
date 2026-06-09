@@ -10,5 +10,7 @@ public interface SatelliteService {
 
     Satellite findByName(String name);
 
+    boolean existsByName(String name);
+
     void deleteSatellite(String name);
 }

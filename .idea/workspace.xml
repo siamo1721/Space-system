@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b775bff7-2501-4309-8a01-5d23e7b00d6a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="b775bff7-2501-4309-8a01-5d23e7b00d6a" name="Changes" comment="add kafka">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/space-service/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/space-service/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/space-service/src/main/java/org/example/domain/service/SatelliteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/space-service/src/main/java/org/example/domain/service/SatelliteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/space-service/src/main/java/org/example/domain/service/impl/ConstellationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/space-service/src/main/java/org/example/domain/service/impl/ConstellationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/space-service/src/main/java/org/example/domain/service/impl/SatelliteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/space-service/src/main/java/org/example/domain/service/impl/SatelliteServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +48,7 @@
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
@@ -80,11 +86,35 @@
       <option name="presentableId" value="Default" />
       <updated>1780228188357</updated>
       <workItem from="1780228190753" duration="1051000" />
-      <workItem from="1780242782835" duration="1010000" />
+      <workItem from="1780242782835" duration="1876000" />
+      <workItem from="1781015611477" duration="1372000" />
+      <workItem from="1781017140555" duration="304000" />
+      <workItem from="1781017614540" duration="730000" />
     </task>
+    <task id="LOCAL-00001" summary="add kafka">
+      <option name="closed" value="true" />
+      <created>1780244875644</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1780244875644</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add kafka">
+      <option name="closed" value="true" />
+      <created>1780244888122</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1780244888122</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add kafka" />
+    <option name="LAST_COMMIT_MESSAGE" value="add kafka" />
   </component>
 </project>

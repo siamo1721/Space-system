@@ -39,6 +39,11 @@ public class SatelliteServiceImpl implements SatelliteService {
     }
 
     @Override
+    public boolean existsByName(String name) {
+        return satelliteRepository.findByName(name).isPresent();
+    }
+
+    @Override
     public void deleteSatellite(String name) {
         Satellite satellite = findByName(name);
 

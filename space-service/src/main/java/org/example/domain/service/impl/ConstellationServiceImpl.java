@@ -15,6 +15,10 @@ public class ConstellationServiceImpl implements ConstellationService {
 
     @Override
     public void createAndSaveConstellation(String name) {
+        if (repository.findByConstellationName(name).isPresent()) {
+            System.out.println("Группировка уже существует: " + name);
+            return;
+        }
         SatelliteConstellation constellation = new SatelliteConstellation(name);
         System.out.println("Создана спутниковая группировка: " + name);
         repository.save(constellation);
