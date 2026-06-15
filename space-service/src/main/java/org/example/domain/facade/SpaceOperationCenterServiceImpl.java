@@ -8,7 +8,7 @@ import org.example.domain.dto.response.AddSatelliteResponse;
 import org.example.domain.dto.response.MissionResponse;
 import org.example.domain.entity.Satellite;
 import org.example.domain.entity.SatelliteConstellation;
-import org.example.domain.kafka.SatelliteEventPublisher;
+import org.example.domain.outbox.OutboxService;
 import org.example.domain.service.ConstellationService;
 import org.example.domain.service.SatelliteService;
 import org.springframework.stereotype.Service;
@@ -23,12 +23,17 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
 
     private final ConstellationService constellationService;
     private final SatelliteService satelliteService;
-    private final SatelliteEventPublisher satelliteEventPublisher;
+    private final OutboxService outboxService;
 
     @LogExecutionTime
     @Override
     @Transactional
     public AddSatelliteResponse addSatellite(AddSatelliteRequest addSatelliteRequest) {
+        if (satelliteService.existsByName(addSatelliteRequest.getParam().getName())) {
+            throw new IllegalArgumentException("Спутник с именем уже существует: "
+                    + addSatelliteRequest.getParam().getName());
+        }
+
         Satellite satellite = satelliteService.createSatellite(addSatelliteRequest.getParam());
 
         SatelliteConstellation satelliteConstellation = constellationService.findByNameConstellation(addSatelliteRequest.getCommunicationName());
@@ -36,7 +41,7 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
         constellationService.addSatelliteToConstellation(satelliteConstellation.getConstellationName(), satellite);
 
         satellite = satelliteService.saveSatellite(satellite);
-        satelliteEventPublisher.publishCreated(satellite);
+        outboxService.scheduleCreated(satellite);
 
         return AddSatelliteResponse.builder()
                 .satelliteName(satellite.getName())
@@ -54,11 +59,12 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
                 : null;
 
         satelliteService.deleteSatellite(satelliteName);
-        satelliteEventPublisher.publishDeleted(satellite, constellationName);
+        outboxService.scheduleDeleted(satellite, constellationName);
     }
 
     @LogExecutionTime
     @Override
+    @Transactional(readOnly = true)
     public MissionResponse executeMission(MissionRequest missionRequest) {
 
         SatelliteConstellation constellation =
@@ -84,6 +90,7 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
     }
 
     @Override
+    @Transactional(readOnly = true)
     public void showConstellationStatus(String constellationName) {
         SatelliteConstellation constellation =
                 constellationService.findByNameConstellation(constellationName);
@@ -99,6 +106,7 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Satellite> getSatellitesInConstellation(String constellationName) {
         return constellationService.findByNameConstellation(constellationName).getSatellite();
     }

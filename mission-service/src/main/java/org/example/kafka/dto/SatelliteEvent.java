@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -13,6 +14,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class SatelliteEvent {
 
+    private UUID eventId;
     private String eventType;
     private Long satelliteId;
     private String satelliteName;

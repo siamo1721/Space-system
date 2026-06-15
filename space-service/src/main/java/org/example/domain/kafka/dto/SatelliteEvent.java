@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.example.domain.entity.enums.SatelliteType;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -14,6 +15,7 @@ import java.time.Instant;
 @AllArgsConstructor
 public class SatelliteEvent {
 
+    private UUID eventId;
     private String eventType;
     private Long satelliteId;
     private String satelliteName;

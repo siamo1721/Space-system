@@ -20,3 +20,7 @@ grpc:
   telemetry:
     host: localhost
     port: 9091
+
+app:
+  outbox:
+    relay-interval-ms: 5000

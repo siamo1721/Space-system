@@ -181,7 +181,7 @@ curl -X POST http://localhost:8080/api/missions \
 curl -X DELETE "http://localhost:8080/api/satellites/Связь-Test"
 ```
 
-## Kafka — асинхронные события о спутниках
+## Kafka — асинхронные события о спутниках (Outbox / Inbox)
 
 | Топик | Описание |
 |-------|----------|
@@ -189,8 +189,16 @@ curl -X DELETE "http://localhost:8080/api/satellites/Связь-Test"
 | `satellite.deleted` | Спутник удалён |
 | `satellite.events.dlt` | «Битые» сообщения (Dead Letter Topic) |
 
+### Паттерны согласованности
+
+| Сервис | Паттерн | Описание |
+|--------|---------|----------|
+| `space-service` | **Transactional Outbox** | Событие пишется в таблицу `outbox` в той же транзакции, что и изменение спутника; планировщик отправляет в Kafka каждые 5 сек |
+| `telemetry-service` | **Inbox** | Consumer проверяет `event_id` в таблице `inbox` и игнорирует дубликаты (at-least-once) |
+
 ```json
 {
+  "eventId": "550e8400-e29b-41d4-a716-446655440000",
   "eventType": "SATELLITE_CREATED",
   "satelliteId": 1,
   "satelliteName": "Связь-1",
@@ -199,6 +207,26 @@ curl -X DELETE "http://localhost:8080/api/satellites/Связь-Test"
   "timestamp": "2026-05-31T12:00:00Z"
 }
 ```
+
+### Таблица `outbox` (space-service)
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `id` | UUID | PK, совпадает с `eventId` в payload |
+| `aggregate_id` | BIGINT | ID спутника |
+| `event_type` | CREATED / DELETED | Тип события |
+| `payload` | TEXT (JSON) | Тело события |
+| `created_at` | TIMESTAMP | Время создания |
+| `status` | PENDING / SENT | Статус доставки в Kafka |
+
+### Таблица `inbox` (telemetry-service)
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `event_id` | UUID | PK, уникальный ID события |
+| `aggregate_id` | BIGINT | ID спутника |
+| `event_type` | VARCHAR | Тип события |
+| `processed_at` | TIMESTAMP | Время обработки |
 
 ## Автотесты API
 
