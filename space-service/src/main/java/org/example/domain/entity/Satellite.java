@@ -17,7 +17,7 @@ public abstract class Satellite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     protected String name;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = false)

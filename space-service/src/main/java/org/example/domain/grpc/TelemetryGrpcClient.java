@@ -60,13 +60,19 @@ public class TelemetryGrpcClient {
 
                 // Обновляем данные спутника в БД
                 try {
-                    satelliteRepository.findByName(update.getSatelliteId())
-                            .ifPresent(satellite -> {
-                                satellite.setInternalTemperature(update.getInternalTemperature());
-                                satellite.setExternalTemperature(update.getExternalTemperature());
-                                satelliteRepository.save(satellite);
-                                log.debug("Спутник {} обновлен в БД", update.getSatelliteId());
-                            });
+                    var satellites = satelliteRepository.findAllByName(update.getSatelliteId());
+                    if (satellites.isEmpty()) {
+                        return;
+                    }
+                    if (satellites.size() > 1) {
+                        log.warn("Найдено {} спутников с именем {} — обновляется первый (id={})",
+                                satellites.size(), update.getSatelliteId(), satellites.getFirst().getId());
+                    }
+                    Satellite satellite = satellites.getFirst();
+                    satellite.setInternalTemperature(update.getInternalTemperature());
+                    satellite.setExternalTemperature(update.getExternalTemperature());
+                    satelliteRepository.save(satellite);
+                    log.debug("Спутник {} обновлен в БД", update.getSatelliteId());
                 } catch (Exception e) {
                     log.error("Ошибка при обновлении спутника в БД", e);
                 }

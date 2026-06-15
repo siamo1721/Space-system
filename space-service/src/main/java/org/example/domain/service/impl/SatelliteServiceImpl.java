@@ -34,13 +34,13 @@ public class SatelliteServiceImpl implements SatelliteService {
 
     @Override
     public Satellite findByName(String name) {
-        return satelliteRepository.findByName(name)
+        return satelliteRepository.findFirstByNameOrderByIdAsc(name)
                 .orElseThrow(() -> new RuntimeException("Спутник не найден: " + name));
     }
 
     @Override
     public boolean existsByName(String name) {
-        return satelliteRepository.findByName(name).isPresent();
+        return satelliteRepository.existsByName(name);
     }
 
     @Override
