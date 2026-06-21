@@ -36,7 +36,8 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
 
         Satellite satellite = satelliteService.createSatellite(addSatelliteRequest.getParam());
 
-        SatelliteConstellation satelliteConstellation = constellationService.findByNameConstellation(addSatelliteRequest.getCommunicationName());
+        SatelliteConstellation satelliteConstellation =
+                constellationService.getConstellationByName(addSatelliteRequest.getCommunicationName());
 
         constellationService.addSatelliteToConstellation(satelliteConstellation.getConstellationName(), satellite);
 
@@ -68,7 +69,7 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
     public MissionResponse executeMission(MissionRequest missionRequest) {
 
         SatelliteConstellation constellation =
-                constellationService.findByNameConstellation(missionRequest.getConstellationName());
+                constellationService.getConstellationByName(missionRequest.getConstellationName());
 
         var satellites = constellation.getSatellite();
 
@@ -93,7 +94,7 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
     @Transactional(readOnly = true)
     public void showConstellationStatus(String constellationName) {
         SatelliteConstellation constellation =
-                constellationService.findByNameConstellation(constellationName);
+                constellationService.getConstellationByName(constellationName);
 
         constellation.getSatellite().forEach(s ->
                 System.out.println(s.getName() + ": " + s.getState())
@@ -108,7 +109,7 @@ public class SpaceOperationCenterServiceImpl implements SpaceOperationCenterServ
     @Override
     @Transactional(readOnly = true)
     public List<Satellite> getSatellitesInConstellation(String constellationName) {
-        return constellationService.findByNameConstellation(constellationName).getSatellite();
+        return constellationService.getConstellationByName(constellationName).getSatellite();
     }
 
     @Override

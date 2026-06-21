@@ -1,5 +1,9 @@
 package org.example.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +16,12 @@ import lombok.Setter;
 @Table(name = "satellite")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "sat_type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "@type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = CommunicationSatellite.class, name = "COMMUNICATION"),
+        @JsonSubTypes.Type(value = ImagingSatellite.class, name = "IMAGING")
+})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public abstract class Satellite {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +40,7 @@ public abstract class Satellite {
 
     @ManyToOne()
     @JoinColumn(name = "constellation_id")
+    @JsonBackReference
     private SatelliteConstellation constellation;
 
     @Column(name = "internal_temperature")

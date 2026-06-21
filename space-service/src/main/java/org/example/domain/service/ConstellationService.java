@@ -9,5 +9,6 @@ public interface ConstellationService {
     void executeConstellationMission(String constellationName);
     void activateAllSatellites(String constellationName);
     void printAllSatelliteConstellations();
+    SatelliteConstellation getConstellationByName(String name);
     SatelliteConstellation findByNameConstellation(String name);
 }

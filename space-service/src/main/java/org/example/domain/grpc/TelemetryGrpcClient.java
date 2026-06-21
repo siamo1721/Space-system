@@ -1,12 +1,11 @@
 package org.example.domain.grpc;
 
-import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import org.example.domain.entity.Satellite;
-import org.example.domain.repository.SatelliteRepository;
+import org.example.domain.service.SatelliteService;
 import org.example.telemetry.TelemetryRequest;
 import org.example.telemetry.TelemetryServiceGrpc;
 import org.example.telemetry.TelemetryUpdate;
@@ -28,7 +27,7 @@ public class TelemetryGrpcClient {
     private int telemetryPort;
 
     @Autowired
-    private SatelliteRepository satelliteRepository;
+    private SatelliteService satelliteService;
 
     private TelemetryServiceGrpc.TelemetryServiceStub telemetryStub;
 
@@ -58,21 +57,14 @@ public class TelemetryGrpcClient {
                 log.debug("Получена телеметрия: {} - внутри: {:.1f}°C, снаружи: {:.1f}°C",
                         update.getSatelliteId(), update.getInternalTemperature(), update.getExternalTemperature());
 
-                // Обновляем данные спутника в БД
                 try {
-                    var satellites = satelliteRepository.findAllByName(update.getSatelliteId());
-                    if (satellites.isEmpty()) {
-                        return;
-                    }
-                    if (satellites.size() > 1) {
-                        log.warn("Найдено {} спутников с именем {} — обновляется первый (id={})",
-                                satellites.size(), update.getSatelliteId(), satellites.getFirst().getId());
-                    }
-                    Satellite satellite = satellites.getFirst();
+                    Satellite satellite = satelliteService.findByName(update.getSatelliteId());
                     satellite.setInternalTemperature(update.getInternalTemperature());
                     satellite.setExternalTemperature(update.getExternalTemperature());
-                    satelliteRepository.save(satellite);
+                    satelliteService.saveSatellite(satellite);
                     log.debug("Спутник {} обновлен в БД", update.getSatelliteId());
+                } catch (RuntimeException e) {
+                    log.debug("Спутник {} не найден для обновления телеметрии", update.getSatelliteId());
                 } catch (Exception e) {
                     log.error("Ошибка при обновлении спутника в БД", e);
                 }
@@ -94,4 +86,3 @@ public class TelemetryGrpcClient {
         telemetryStub.streamTelemetry(request, responseObserver);
     }
 }
-

@@ -1,5 +1,7 @@
 package org.example.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "satellite_constellation")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SatelliteConstellation {
 
     @Id
@@ -23,6 +26,7 @@ public class SatelliteConstellation {
     private String constellationName;
 
     @OneToMany(mappedBy = "constellation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Satellite> satelliteList = new ArrayList<>();
 
     public SatelliteConstellation(String constellationName) {

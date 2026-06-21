@@ -12,6 +12,15 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  data:
+    redis:
+      host: ${SPRING_DATA_REDIS_HOST:localhost}
+      port: ${SPRING_DATA_REDIS_PORT:6379}
+      timeout: 2s
+  cache:
+    type: redis
+    redis:
+      cache-null-values: false
 
 server:
   port: 8080
@@ -20,6 +29,21 @@ grpc:
   telemetry:
     host: localhost
     port: 9091
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,caches,metrics
+  endpoint:
+    caches:
+      enabled: true
+  metrics:
+    enable:
+      cache: true
+  health:
+    redis:
+      enabled: false
 
 app:
   outbox:
